@@ -16,11 +16,22 @@ You'll need to use multiple buildpacks.
 This buildpack will need to be invoked first, followed by your language buildpack.  
 Heroku now supports configuring multiple buildpacks natively, or you can use the [heroku-buildpack-multi](https://github.com/ddollar/heroku-buildpack-multi) buildpack.
 
+
+### Setup using Heroku Interface
+
+- In the "Settings" tab
+- Go to "Buildpacks" configuration
+- And click on "Add buildpack" 
+- On the screen that opens, paste the url of the repository https://github.com/Oficina5/heroku-buildpack-oracle and "save changes"
+- Then also add the buildpack for the project, example: heroku/nodejs
+- Note that we must leave the oracle buildpack first, so that it can be run in the correct order.
+- All ready! The next deploy should use these settings
+
 ### Setup using heroku-buildpack-multi
 
 Add the following contents to `.buildpacks`:
 
-    https://github.com/luizalabs/oracle-heroku-buildpack
+    https://github.com/Oficina5/heroku-buildpack-oracle
     https://github.com/heroku/heroku-buildpack-go
 
 # Configuration (Optional)
@@ -40,12 +51,3 @@ The files will be symlinked into `vendor/oracle-instantclient/network/admin`
 
 You do not need `tnsnames.ora` and `sqlnet.ora`, they're both optional. The buildpack and some other buildpacks will work fine without them.
 
-## Tested buildpacks
-
-Although I firmly believe it should work with basically any language, I can only say for the languages I've actually tested :)
-
-If you need this buildpack to work with any other language, feel free to fork this repo and submit a Pull Request ;)
-
-[Golang](https://github.com/heroku/heroku-buildpack-go) 
-
-[Python](https://github.com/heroku/heroku-buildpack-python) 
